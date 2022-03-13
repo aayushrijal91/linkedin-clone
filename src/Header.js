@@ -12,7 +12,7 @@ function Header() {
 
                 <div className="header__search">
                     <Search />
-                    <input type="text" />
+                    <input type="text" placeholder='Search for jobs, companies...'/>
                 </div>
             </div>
             <div className="header__right">
