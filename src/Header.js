@@ -1,10 +1,21 @@
 import React from 'react';
 import "./Header.css";
+import { logout } from './features/userSlice';
 import HeaderOption from './HeaderOption';
 import { Search, Notifications, Chat,BusinessCenter, SupervisorAccount, Home } from '@mui/icons-material';
+import { useDispatch } from 'react-redux';
+import { auth } from './firebase';
 
 
 function Header() {
+    const dispatch = useDispatch();
+
+    const logoutOfApp = () => {
+        // alert("logout");
+        dispatch(logout());
+        auth.signOut();
+    };
+
     return (
         <div className="header">
             <div className="header__left">
@@ -21,7 +32,7 @@ function Header() {
                 <HeaderOption title="Jobs" Icon={BusinessCenter} />
                 <HeaderOption title="Messaging" Icon={Chat} />
                 <HeaderOption title="Notifications" Icon={Notifications} />
-                <HeaderOption title="Me" avatar="https://scontent-syd2-1.xx.fbcdn.net/v/t1.6435-9/103414580_3294645780566613_3999404826124014751_n.jpg?_nc_cat=110&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=MK4zLfPsNWYAX9G30sL&_nc_ht=scontent-syd2-1.xx&oh=00_AT_VbKoogq7yEdsxHYUaqlJqtPDX2eDbuZRGQsifdTKhKg&oe=62398878" />
+                <HeaderOption onClick={logoutOfApp} title="Me" avatar="https://scontent-syd2-1.xx.fbcdn.net/v/t1.6435-9/103414580_3294645780566613_3999404826124014751_n.jpg?_nc_cat=110&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=MK4zLfPsNWYAX9G30sL&_nc_ht=scontent-syd2-1.xx&oh=00_AT_VbKoogq7yEdsxHYUaqlJqtPDX2eDbuZRGQsifdTKhKg&oe=62398878" />
             </div>
         </div>
     )
