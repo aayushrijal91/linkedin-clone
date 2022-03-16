@@ -3,10 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { auth } from './firebase';
 import './App.css';
 import Header from './Header';
-import { selectUser, logout, login } from "./features/userSlice"; 
+import { selectUser, logout, login } from "./features/userSlice";
 import Sidebar from './Sidebar';
 import Feed from './Feed';
 import Login from "./Login";
+import Widgets from './Widgets';
 
 function App() {
   const user = useSelector(selectUser);
@@ -15,7 +16,7 @@ function App() {
 
   useEffect(() => {
     auth.onAuthStateChanged(userAuth => {
-      if(userAuth) {
+      if (userAuth) {
         dispatch(login({
           email: userAuth.email,
           uid: userAuth.uid,
@@ -37,10 +38,11 @@ function App() {
         <Login />
       ) : (
 
-      <div className="app__body">
+        <div className="app__body">
           <Sidebar />
           <Feed />
-      </div>
+          <Widgets />
+        </div>
       )}
     </div>
   );
